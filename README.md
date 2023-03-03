@@ -51,4 +51,4 @@ This repository is maintained by:
 
 | | |
 |:---:|:---:|
-| [<img src="https://github.com/GitHubUserName.png" width="40">](https://github.com/GitHubUserName) | [@GitHubUserName](https://github.com/GitHubUserName) |
+| [<img src="https://github.com/gabrielenava.png" width="40">](https://github.com/gabrielenava) | [@gabrielenava](https://github.com/gabrielenava) |
