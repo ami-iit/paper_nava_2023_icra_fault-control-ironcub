@@ -29,9 +29,10 @@ Config.model.jointList = {'torso_pitch','torso_roll','torso_yaw', ...
 Config.model.baseLinkName = 'root_link';
 
 % model name and path (hard-coded for the moment)
-Config.meshesPath      = '/home/gnava/Software/github/ami-iit/component_ironcub/models';
-Config.model.modelName = 'model_jointsOptimization_MK1_1.urdf';
-Config.model.modelPath = './../../models/';
+ironcub_software_dir   = getenv('IRONCUB_SOFTWARE_SOURCE_DIR');
+Config.meshesPath      = [ironcub_software_dir, '/models/'];
+Config.model.modelName = 'model_stl.urdf';
+Config.model.modelPath = [ironcub_software_dir, '/models/iRonCub-Mk1_1/iRonCub/robots/iRonCub-Mk1_1_v1/'];
 DEBUG                  = false;
 
 % generate the TurbinesData structure

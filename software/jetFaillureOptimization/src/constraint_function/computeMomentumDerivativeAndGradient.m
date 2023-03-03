@@ -43,10 +43,10 @@ function [LDot, grad_LDot] = computeMomentumDerivativeAndGradient(u, KinDynModel
         l_jet_i = sign(turbineAxis(i))*w_R_j_i(1:3,abs(turbineAxis(i)));
 
         % compute i-th column of matrix A
-        A(:,i)  = iRonCubLib.skewBar(r_jet_i)*l_jet_i;
+        A(:,i)  = iRonCubLib_v1.skewBar(r_jet_i)*l_jet_i;
 
         % compute  i-th column of matrix Lambda
-        Lambda = Lambda - [jetsIntensities(i) * iRonCubLib.skewZeroBar(l_jet_i), jetsIntensities(i) * iRonCubLib.skewBar(r_jet_i) * wbc.skew(l_jet_i)] * J_r_i;
+        Lambda = Lambda - [jetsIntensities(i) * iRonCubLib_v1.skewZeroBar(l_jet_i), jetsIntensities(i) * iRonCubLib_v1.skewBar(r_jet_i) * wbc.skew(l_jet_i)] * J_r_i;
     end
 
     % from angular velocity to Euler angles (rpy)
