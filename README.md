@@ -4,14 +4,15 @@
 
 <div align="center">
 
-
-_A. Author1, B. Author2, "Paper Name" in
+_G. Nava, D. Pucci, "Paper Name" in
 Paper Name, vol. 1, no. 1, pp. 1-6, Month Year, doi: 10.1093/ajae/aaq063_
 
 </div>
 
 <p align="center">
+  
 https://user-images.githubusercontent.com/12396934/222720989-ca3d937b-ad23-4610-adef-72bb574fd0e1.mp4
+  
 </p>
 
 <div align="center">
