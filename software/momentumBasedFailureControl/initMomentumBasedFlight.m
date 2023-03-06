@@ -21,10 +21,11 @@ clc
 % Set path to the utility functions and to WBC library
 import wbc.*
 addpath(genpath('./src/'));
+addpath('../controlAndDataGui/');
 
 % Simulation time and delta_t [s]
-Config.simulationTime                    = inf;
-Config.tStep                             = 0.01;
+Config.simulationTime                   = 45; %inf;
+Config.tStep                            = 0.01;
 
 %% SIMULATION SETTINGS
 
@@ -38,13 +39,6 @@ Config.USE_JET_DYNAMICS                 = false;
 % Kalman Filter. WARNING: it requires Config.USE_JET_DYNAMICS to be TRUE
 Config.USE_THRUST_ESTIMATOR             = false;
 
-% ----------------------------------------------------------------------- %
-% Compatibility with real robot controller
-
-% if true, the controller is activated with jets OFF (leave it false)
-Config.BALANCING_NO_JETS                = false;
-% ----------------------------------------------------------------------- %
-
 % Update thrust estimation option in case jets dynamics is FALSE
 if ~Config.USE_JET_DYNAMICS && Config.USE_THRUST_ESTIMATOR
     
@@ -52,12 +46,51 @@ if ~Config.USE_JET_DYNAMICS && Config.USE_THRUST_ESTIMATOR
     warning('USE_THRUST_ESTIMATOR is TRUE but USE_JET_DYNAMICS is FALSE. Setting USE_THRUST_ESTIMATOR to FALSE.')   
 end
 
+% Controller type: native GUI or joystick
+Config.USE_NATIVE_GUI                   = false;
+Config.USE_FLIGHT_DATA_GUI              = false;
+
+% Control type:
+%
+% Default controller => MOMENTUM BASED CONTROL WITH LYAPUNOV STABILITY (IEEE-RAL)
+% If USE_ATTITUDE_CONTROL = true => LINEAR MOMENTUM AND ATTITUDE CONTROL (IEEE-HUMANOIDS)
+%
+Config.USE_ATTITUDE_CONTROL             = true;
+
+% If Config.INCLUDE_THRUST_LIMITS and/or Config.INCLUDE_JOINTS_LIMITS are
+% set to true, the thrusts limits and/or the joints limits are included in
+% the control algorithm (as QP constraints)
+Config.INCLUDE_THRUST_LIMITS            = true;
+Config.INCLUDE_JOINTS_LIMITS            = true;
+
+% Activate visualization and data collection
+Config.SCOPE_JOINTS                     = true;
+Config.SCOPE_QP                         = true;
+Config.SCOPE_COM                        = true;
+Config.SCOPE_BASE                       = true;
+Config.SCOPE_MOMENTUM                   = true;
+Config.SCOPE_JETS                       = true;
+Config.SCOPES_WRENCHES                  = true;
+Config.SCOPE_GAINS_AND_STATE_MACHINE    = true;
+
 % Save data on the workspace after the simulation
-Config.SAVE_WORKSPACE                  = false;
+Config.SAVE_WORKSPACE                   = true;
 
 %% ADD CONFIGURATION FILES
 
 % Run robot-specific and controller-specific configuration parameters
-run(strcat('app/robots/',getenv('YARP_ROBOT_NAME'),'/configRobotAndJets.m')); 
-run(strcat('app/robots/',getenv('YARP_ROBOT_NAME'),'/configFlightControl.m'));
-run(strcat('app/robots/',getenv('YARP_ROBOT_NAME'),'/configJetControl.m'));
+run(strcat('app/robots/',getenv('YARP_ROBOT_NAME'),'/configRobot.m')); 
+run(strcat('app/robots/',getenv('YARP_ROBOT_NAME'),'/configJets.m')); 
+run(strcat('app/robots/',getenv('YARP_ROBOT_NAME'),'/gainsAndParameters.m'));
+
+% open the native GUI for control (if no joystick is present)
+if Config.USE_NATIVE_GUI
+    
+    ironcubControlGui;
+end
+
+% Open flight data GUI
+if Config.USE_FLIGHT_DATA_GUI
+    
+    flightGui = flightDataGui;
+end

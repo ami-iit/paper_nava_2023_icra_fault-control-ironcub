@@ -1,34 +1,32 @@
-function [turbineStatus, T_err_avg, T_err] = turbinesFailureDetector(jetsIntensities, jetsIntensities_star, time, Config)
+function [turbineStatus, rpm_err_avg, rpm_err] = turbinesFailureDetector(rpm_meas, rpm_star, time, Config)
 
 % turbineStatus
 %
 % - default (no fail): 0
 %
-% - drop in the RPM: 1
+% - partial failure: 1
 %
-% - partial failure: 2
+% - complete failure: 2
 %
-% - complete failure: 3
-%
-persistent timeFailStarted possibleFailure T_err_window
+persistent timeFailStarted possibleFailure rpm_err_window
 
 if isempty(timeFailStarted) || isempty(possibleFailure)
     
-    timeFailStarted = zeros(length(jetsIntensities),1);
-    possibleFailure = zeros(length(jetsIntensities),1);
-    T_err_window    = zeros(length(jetsIntensities),Config.failureDetection.size_window_T_err);
+    timeFailStarted = zeros(length(rpm_meas),1);
+    possibleFailure = zeros(length(rpm_meas),1);
+    rpm_err_window  = zeros(length(rpm_meas),Config.failureDetection.size_window_rpm_err);
 end
  
-T_err         = abs(jetsIntensities - jetsIntensities_star);
-T_err_avg     = zeros(length(T_err),1);
-turbineStatus = zeros(length(T_err),1);
+rpm_err       = abs(rpm_meas - rpm_star);
+rpm_err_avg   = zeros(length(rpm_err),1);
+turbineStatus = zeros(length(rpm_err),1);
 
 % cycle on all turbines to detect failures
-for k = 1:length(T_err)
+for k = 1:length(rpm_err)
 
-    T_err_avg(k) = sum(T_err_window(k,:))/Config.failureDetection.size_window_T_err;
+    rpm_err_avg(k) = sum(rpm_err_window(k,:))/Config.failureDetection.size_window_rpm_err;
 
-    if T_err_avg(k) > Config.failureDetection.maxThrustError
+    if rpm_err_avg(k) > Config.failureDetection.maxRPMError
         
         if ~possibleFailure(k)
             
@@ -37,20 +35,15 @@ for k = 1:length(T_err)
             possibleFailure(k) = true;
         end
         
-        if time > timeFailStarted(k) + Config.failureDetection.timeThr_drop && time <= timeFailStarted(k) + Config.failureDetection.timeThr_partFail && possibleFailure(k)
-        
-            % temporary drop in the rpm -> T_err ≥ threshold for time > threshold_drop
-            turbineStatus(k) = 1;
-        end
         if time > timeFailStarted(k) + Config.failureDetection.timeThr_partFail && possibleFailure(k)
             
-            % turbine cannot reach the requested thrust -> T_err ≥ threshold for time > threshold_partialFailure
-            turbineStatus(k) = 2;
+            % turbine cannot reach the requested rpm -> T_err ≥ threshold for time > threshold_partialFailure
+            turbineStatus(k) = 1;
             
-            if jetsIntensities(k) <= Config.inequalitiesQP.idleJetsInt
+            if rpm_meas(k) <= 0
                 
                 % turbine shuts off -> T_err ≥ threshold and T ≤ T_idle
-                turbineStatus(k) = 3;
+                turbineStatus(k) = 2;
             end
         end
     else
@@ -59,5 +52,5 @@ for k = 1:length(T_err)
 end
 
 % update error window to compute the average error in the next iteration
-T_err_window(:,1:end-1) = T_err_window(:,2:end); 
-T_err_window(:,end)     = T_err;
+rpm_err_window(:,1:end-1) = rpm_err_window(:,2:end); 
+rpm_err_window(:,end)     = rpm_err;
