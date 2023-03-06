@@ -1,21 +1,11 @@
 <h1 align="center">
-  Failure Detection and Fault Tolerant Control of a Jet-Powered Flying Humanoid Robot
+  Failure Detection and Fault Tolerant Control  <br/> of a Jet-Powered Flying Humanoid Robot
 </h1>
 
 <div align="center">
 
-_G. Nava, D. Pucci, "Paper Name" in
-Paper Name, vol. 1, no. 1, pp. 1-6, Month Year, doi: 10.1093/ajae/aaq063_
-
-</div>
-<div align="center">
-  Journal Name
-</div>
-
-<div align="center">
-  <a href="#installation"><b>Installation</b></a> |
-  <a href="http://dx.doi.org/10.1093/ajae/aaq063"><b>Paper</b></a> |
-  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><b>Video</b></a>
+  G. Nava, D. Pucci, "_Failure Detection and Fault Tolerant Control of a Jet-Powered Flying Humanoid Robot_",  <br/> in 2023 IEEE International Conference on Robotics and Automation (ICRA)
+  
 </div>
 
 <p align="center">
@@ -26,7 +16,12 @@ https://user-images.githubusercontent.com/12396934/222720989-ca3d937b-ad23-4610-
 
 ### Installation
 
-_Description of how to install the software and run the software to produce the plots and images in the paper. Both the installation process and the processing run should require as less user input as possible (ideally, none)._
+This repository requires to install [ironcub_software](https://github.com/ami-iit/ironcub_software) and its dependencies. Follow the instruction in https://github.com/ami-iit/ironcub_software#installation, then just clone/download this repo to use it.
+
+### Instructions
+
+- [offline joint positions and attitude optimization](https://github.com/ami-iit/paper_nava_2023_icra_fault-control-ironcub/blob/main/software/jetFaillureOptimization/README.md)
+- [momnetum-control with turbine failure](https://github.com/ami-iit/paper_nava_2023_icra_fault-control-ironcub/blob/main/software/momentumBasedFailureControl/README.md)
 
 ### Citing this work
 
@@ -36,8 +31,8 @@ If you find the work useful, please consider citing:
 @ARTICLE{ajae/aaq063,
   author={Author1, Alfred and Author2, Beatrice},
   journal={Journal},
-  title={Paper Tile},
-  year={2021},
+  title={Paper Title},
+  year={2023},
   volume={1},
   number={1},
   pages={1-6},
