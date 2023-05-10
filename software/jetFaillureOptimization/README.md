@@ -3,7 +3,7 @@
 The script implements a nonliner optimization to find the optimal joints position, attitude and thrust in case of turbine failure. The optimizer accounts for:
 
 - self collision avoidance
-- jet ehaust cones constraints
+- jet exhaust cones constraints
 - enhanced maneuverability
 
 ## How to configure the optimizer
