@@ -2,34 +2,36 @@
 
 **This controller is maintained for the robots:**
 
-- `iRonCub-Mk1_1_Gazebo`
-- `iRonCub-Mk1_Gazebo`
+- `iRonCub-Mk1_1_Gazebo_v1`
 
-## Simulation type:
+## Tested simulation types:
 
-#### Without jet dynamics and estimated thrusts
-Jets dynamic model is just the numerical integration of the desired thrusts rate of changes. The controller uses the thrusts from numerical integration.
+#### Baseline controller
 
-#### With jet dynamics
-Jet dynamic model is designed based on experiments with the real turbines. The thrust rate of change is stabilized towards the reference values by means of a low-level jets control that sets desired throttle values. The controller uses the thrusts from Gazebo.
+Jets dynamic model is just the numerical integration of the desired thrusts rate of changes. The controller uses the thrusts from numerical integration. To enable this mode, one must select the correct Gazebo jet plugin from [ironcub_software](https://github.com/ami-iit/ironcub_software). When running the `cmake` configuration of iRonCub software, be sure to set the following options:
 
-#### With jet dynamics and estimated thrusts
-Jet dynamic model is designed based on experiments with the real turbines. The thrust rate of change is stabilized towards the reference values by means of a low-level jets control that sets desired throttle values. The controller uses the estimated thrust from a EKF-based thrusts estimation algorithm.
+```
+USE_NONLINEAR_JET_DYNAMICS_PLUGIN = FALSE
+USE_FIRST_ORDER_JET_DYNAMICS_PLUGIN = TRUE
+```
 
-### Available simulations:
+also, deactivate the turbine fault by modifying the manual switch inside `momentumBasedFlight.mdl`:
 
-**Robot:** `iRonCub-Mk1_Gazebo`
 
-| SIMULATION TYPE | TAKE OFF | HOVERING | SLOW FLIGHT MANEUVERS | FAST FLIGHT MANEUVERS | LANDING |
-|:-------:|:------:|:--------:|:--------:|:--------------------:|:--------------------:|
-|Without jet dynamics and estimated thrusts | YES |  YES |  YES |  YES |  YES |
-|With jet dynamics | YES |  YES |  YES |  NO |  YES |
-|With jet dynamics and estimated thrusts | NO |  NO |  NO |  NO |  NO |
+Optional: to deactivate the autopilot mode and control the robot via the native GUI, set:
 
-**Robot:** `iRonCub-Mk1_1_Gazebo`
+https://github.com/ami-iit/paper_nava_2023_icra_fault-control-ironcub/blob/main/software/momentumBasedFailureControl/app/robots/iRonCub-Mk1_1_Gazebo_v1/gainsAndParameters.m#L212
 
-| SIMULATION TYPE | TAKE OFF | HOVERING | SLOW FLIGHT MANEUVERS | FAST FLIGHT MANEUVERS | LANDING |
-|:-------:|:------:|:--------:|:--------:|:--------------------:|:--------------------:|
-|Without jet dynamics and estimated thrusts | YES |  YES |  YES |  YES |  YES |
-|With jet dynamics | YES |  YES |  YES |  NO |  NO |
-|With jet dynamics and estimated thrusts | NO |  NO |  NO |  NO |  NO |
+to FALSE, and 
+
+https://github.com/ami-iit/paper_nava_2023_icra_fault-control-ironcub/blob/main/software/momentumBasedFailureControl/initMomentumBasedFlight.m#L50
+
+to TRUE.
+
+#### Fault control
+
+It uses the exact same configuration as the baseline controller. The user can select on which turbine the failure occurs by using the manual switch inside `momentumBasedFlight.mdl`.
+
+## How to run simulations
+
+follow the [README](https://github.com/ami-iit/ironcub_software/blob/main/flight-controllers-stable/README.md) of `ironcub_software` repo.
