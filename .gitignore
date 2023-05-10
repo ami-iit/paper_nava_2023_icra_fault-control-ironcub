@@ -27,6 +27,11 @@
 *.fig
 !software/controlAndDataGui/*.fig
 
+# MAT files
+*.mat
+!software/jetFailureOptimization/init/*.mat
+!software/momentumBasedFailureControl/app/robots/iRonCub-Mk1_1_Gazebo_v1/*.mat
+
 # Simulink autosave
 *.autosave
 
