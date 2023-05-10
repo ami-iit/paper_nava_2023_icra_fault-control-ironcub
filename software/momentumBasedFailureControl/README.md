@@ -17,16 +17,13 @@ USE_FIRST_ORDER_JET_DYNAMICS_PLUGIN = TRUE
 
 also, deactivate the turbine fault by modifying the manual switch inside `momentumBasedFlight.mdl`:
 
+![image](https://github.com/ami-iit/paper_nava_2023_icra_fault-control-ironcub/assets/12396934/f8efbbe5-fda8-4254-8d3b-523e79923a34)
 
 Optional: to deactivate the autopilot mode and control the robot via the native GUI, set:
 
-https://github.com/ami-iit/paper_nava_2023_icra_fault-control-ironcub/blob/main/software/momentumBasedFailureControl/app/robots/iRonCub-Mk1_1_Gazebo_v1/gainsAndParameters.m#L212
+[Config.AUTOPILOT_ON = false](app/robots/iRonCub-Mk1_1_Gazebo_v1/gainsAndParameters.m#L212)
 
-to FALSE, and 
-
-https://github.com/ami-iit/paper_nava_2023_icra_fault-control-ironcub/blob/main/software/momentumBasedFailureControl/initMomentumBasedFlight.m#L50
-
-to TRUE.
+[Config.USE_NATIVE_GUI = true](initMomentumBasedFlight.m#L50)
 
 #### Fault control
 
