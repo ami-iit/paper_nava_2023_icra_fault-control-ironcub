@@ -8,7 +8,7 @@
 
 #### Baseline controller
 
-Jets dynamic model is just the numerical integration of the desired thrusts rate of changes. The controller uses the thrusts from numerical integration. To enable this mode, one must select the correct Gazebo jet plugin from [ironcub_software](https://github.com/ami-iit/ironcub_software). When running the `cmake` configuration of iRonCub software, be sure to set the following options:
+Jets dynamic model is just the numerical integration of the desired thrusts rate of changes. The controller uses the thrusts from numerical integration. To enable this mode, one must select the correct Gazebo jet plugin from [ironcub-mk1-software](https://github.com/ami-iit/ironcub-mk1-software). When running the `cmake` configuration of iRonCub software, be sure to set the following options:
 
 ```
 USE_NONLINEAR_JET_DYNAMICS_PLUGIN = FALSE
@@ -21,7 +21,7 @@ also, deactivate the turbine fault by modifying the manual switch inside `moment
 
 Optional: to deactivate the autopilot mode and control the robot via the native GUI, set:
 
-[Config.AUTOPILOT_ON = false](app/robots/iRonCub-Mk1_1_Gazebo_v1/gainsAndParameters.m#L212)
+[Config.AUTOPILOT_ON = false](app/robots/iRonCub-Mk1_1_Gazebo/gainsAndParameters.m#L212)
 
 [Config.USE_NATIVE_GUI = true](initMomentumBasedFlight.m#L50)
 
