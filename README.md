@@ -16,7 +16,7 @@ https://github.com/ami-iit/paper_nava_2023_icra_fault-control-ironcub/assets/123
 
 ### Installation
 
-This repository requires to install [ironcub_software](https://github.com/ami-iit/ironcub_software) and its dependencies. Follow the instruction in https://github.com/ami-iit/ironcub_software#installation, then just clone/download this repo to use it.
+This repository requires to install [ironcub-mk1-software](https://github.com/ami-iit/ironcub-mk1-software) and its dependencies. Follow the instruction in https://github.com/ami-iit/ironcub-mk1-software#installation, then just clone/download this repo to use it.
 
 ### Instructions
 
