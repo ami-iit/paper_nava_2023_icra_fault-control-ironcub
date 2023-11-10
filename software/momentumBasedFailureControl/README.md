@@ -2,7 +2,7 @@
 
 **This controller is maintained for the robots:**
 
-- `iRonCub-Mk1_1_Gazebo_v1`
+- `iRonCub-Mk1_1_Gazebo`
 
 ## Tested simulation types:
 
