@@ -32,7 +32,7 @@ Config.model.baseLinkName = 'root_link';
 ironcub_software_dir   = getenv('IRONCUB_SOFTWARE_SOURCE_DIR');
 Config.meshesPath      = [ironcub_software_dir, '/models/'];
 Config.model.modelName = 'model_stl.urdf';
-Config.model.modelPath = [ironcub_software_dir, '/models/iRonCub-Mk1_1/iRonCub/robots/iRonCub-Mk1_1_v1/'];
+Config.model.modelPath = [ironcub_software_dir, '/models/iRonCub-Mk1_1/iRonCub/robots/iRonCub-Mk1_1/'];
 DEBUG                  = false;
 
 % generate the TurbinesData structure
