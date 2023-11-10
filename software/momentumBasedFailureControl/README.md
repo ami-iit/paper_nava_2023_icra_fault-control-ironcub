@@ -31,4 +31,4 @@ It uses the exact same configuration as the baseline controller. The user can se
 
 ## How to run simulations
 
-follow the [README](https://github.com/ami-iit/ironcub_software/blob/main/flight-controllers-stable/README.md) of `ironcub_software` repo.
+follow the [README](https://github.com/ami-iit/ironcub-mk1-software/blob/main/flight-controllers-stable/README.md) of `ironcub-mk1-software` repo.
