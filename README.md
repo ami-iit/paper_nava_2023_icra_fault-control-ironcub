@@ -14,9 +14,12 @@ https://github.com/ami-iit/paper_nava_2023_icra_fault-control-ironcub/assets/123
   
 </p>
 
-### Installation
+### Installation and dependencies
 
-This repository requires to install [ironcub-mk1-software](https://github.com/ami-iit/ironcub-mk1-software) and its dependencies. Follow the instruction in https://github.com/ami-iit/ironcub-mk1-software#installation, then just clone/download this repo to use it.
+- [MATLAB and Simulink](https://it.mathworks.com/products/matlab.html), at least version R2022a
+- [ironcub-mk1-software](https://github.com/ami-iit/ironcub-mk1-software) and its dependencies. Follow the instruction in https://github.com/ami-iit/ironcub-mk1-software#installation, **Warning**: `ironcub-mk1-software` and its dependencies are under dvelopment, and compatibility with this repo may be broken in future releases. Consider installing the repo at the following release: https://github.com/ami-iit/ironcub-mk1-software/releases/tag/v3.0, which is compatible with this version of `ironcub-mk1-software` dependencies: https://github.com/robotology/robotology-superbuild/releases/tag/v2023.11.0.
+
+The repo does not require to b compiled. After having installed all the dependencise, just clone/download this repo to use it.
 
 ### Instructions
 
